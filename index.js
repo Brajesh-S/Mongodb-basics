@@ -4,7 +4,7 @@ mongoose.connect('mongodb://localhost/playground')
     .then(() => console.log('connected to MongoDB...'))
     .catch(err => console.error(' could not connect to MongoDB...', err))
     
-const CourseSchema = new mongoose.Schema({
+const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
     tags: [ String ],
@@ -12,9 +12,17 @@ const CourseSchema = new mongoose.Schema({
     isPublished: Boolean
 });
 const Course = mongoose.model('Course', courseSchema);
-const course = new Course({
-    name: 'Node.js Course',
+
+async function createCourse() {
+    const course = new Course({
+    name: 'Angular.js Course',
     author: 'Aris', 
-    tags: ['node', 'backend'],
+    tags: ['node', 'frontend'],
     isPublished: true
 });
+
+const result = await course.save();
+console.log(result);
+}
+
+createCourse();
