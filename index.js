@@ -15,7 +15,7 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse() {
     const course = new Course({
-    name: 'Angular.js Course',
+    name: 'java.js Course',
     author: 'Aris', 
     tags: ['node', 'frontend'],
     isPublished: true
@@ -48,3 +48,10 @@ async function updateCourse(id) {
     console.log(result);
 }
 updateCourse('634d1771181d505fea5af0f3');
+
+async function removeCourse(id) {
+    const result = await Course.deleteOne({ _id: id });
+    console.log(result);
+}
+
+removeCourse('634d1683ac87d37d7a63be10')
